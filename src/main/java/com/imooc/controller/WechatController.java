@@ -23,7 +23,7 @@ import java.net.URLEncoder;
 
 /**
  * Created by 赖学军
- *
+ *使用SDK方式获取 OpenID
  * @Date 2021/4/25 18:01
  * @Version 1.0
  */
@@ -36,13 +36,20 @@ public class WechatController {
 
     @GetMapping("/authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl) throws UnsupportedEncodingException {
-        //1.配置
+        //1.配置（通过配置config配置）
         //2.调用方法
         String url = "http://laixuejun.nat300.top/sell/wechat/userInfo";// http://sell.natapp4.cc/
         String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAuth2Scope.SNSAPI_USERINFO, URLEncoder.encode(returnUrl,"UTF-8"));
         return "redirect:" + redirectUrl;
     }
 
+    /**
+     * 获取code
+     * @param code
+     * @param returnUrl
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @GetMapping("/userInfo")
     public String userInfo(@RequestParam("code") String code,
                          @RequestParam("state") String returnUrl) throws UnsupportedEncodingException {
@@ -53,6 +60,8 @@ public class WechatController {
             log.error("【微信网页授权】{}",e);
             throw new SellException(ResultEnum.WECHAT_MP_ERROR.getCode(), e.getError().getErrorMsg());
         }
+
+
         try {
             //获得用户信息  ,授权其实用不到的 这儿打出来看看
             WxMpUser wxMpUser = wxMpService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);

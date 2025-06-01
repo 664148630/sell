@@ -22,6 +22,7 @@ import java.util.List;
 @Slf4j
 public class OrderForm2OrderDTOConverter {
     public static OrderDTO convert(OrderForm orderForm) {
+        //转换工具
         Gson gson = new Gson();
         OrderDTO orderDTO = new OrderDTO();
 
@@ -31,7 +32,9 @@ public class OrderForm2OrderDTOConverter {
         orderDTO.setBuyerOpenid(orderForm.getOpenid());
 
         List<OrderDetail> orderDetailList = new ArrayList<>();
+        //转换可能会出错，所以try
         try {
+            // 将json转换成list
             orderDetailList = gson.fromJson(orderForm.getItems(),
                     new TypeToken<List<OrderDetail>>(){}
                     .getType());

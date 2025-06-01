@@ -70,6 +70,7 @@ public class BuyerOrderController {
             throw new SellException(ResultEnum.PARAM_ERROR);
         }
         PageRequest request = PageRequest.of(page, size);
+//        PageRequest request = new PageRequest(page, size);
         Page<OrderDTO> orderDTOPage = orderService.findList(openid, request);
 
         return ResultVOUtil.success(orderDTOPage.getContent());
@@ -81,7 +82,7 @@ public class BuyerOrderController {
     public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,
                                      @RequestParam("orderId") String orderId) {
         OrderDTO orderDTO = buyerService.findOrderOne(openid, orderId);
-        // 不安全的做法，改进
+        //TODO 不安全的做法，改进为以上
 //        OrderDTO orderDTO = orderService.findOne(orderId);
         return ResultVOUtil.success(orderDTO);
 
@@ -91,7 +92,7 @@ public class BuyerOrderController {
     public ResultVO cancel(@RequestParam("openid") String openid,
                            @RequestParam("orderId") String orderId) {
         buyerService.cancelOrder(openid, orderId);
-        // 不安全的做法，改进
+        //TODO 不安全的做法，改进为以上
 //        OrderDTO orderDTO = orderService.findOne(orderId);
 //        orderService.cancel(orderDTO);
         return ResultVOUtil.success();

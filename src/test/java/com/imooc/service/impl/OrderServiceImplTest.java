@@ -73,7 +73,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void findList() {
-        PageRequest request = PageRequest.of(0, 2);
+        PageRequest request = PageRequest.of(2, 5);
         Page<OrderDTO> orderDTOPage = orderService.findList(BUYER_OPENID, request);
         Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
     }

@@ -15,7 +15,8 @@ server:
   servlet:
     context-path: /sell
 
-# 用xml文件代替
+
+# 用xml文件代替了，所以就不用这里的配置
 #logging:
 #  pattern:
 #    console: "%d - %msg%n"
@@ -24,6 +25,11 @@ server:
 #  level:
 #    com.imooc.LoggerTest: debug
 
+#这是测试号的
 wechat:
-  mpAppId: wx4676b0351a113fd6
-  mpAppSecret: fa475a6e0894fb42edea490ecaba205c
+  mpAppId: wx944bee3c0903b94f
+  mpAppSecret: d8503f7837f2e857cd96390507c9da93
+  mchId: 1409146202
+  mchKey: c976503d34ca432c601361f969fd8d85
+  keyPath: /var/weixin_cert/h5.p12
+  notifyUrl: http://sell.natapp4.cc/sell/pay/notify
