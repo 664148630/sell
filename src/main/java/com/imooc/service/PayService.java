@@ -1,6 +1,8 @@
 package com.imooc.service;
 
 import com.imooc.dto.OrderDTO;
+import com.lly835.bestpay.model.PayResponse;
+import com.lly835.bestpay.model.RefundResponse;
 
 /**
  * Created by 赖学军
@@ -13,5 +15,14 @@ public interface PayService {
      * 创建预支付订单
      * @param orderDTO
      */
-    void create(OrderDTO orderDTO);
+    PayResponse create(OrderDTO orderDTO);
+
+    PayResponse notify(String notifyData);
+
+    /**
+     * 退款
+     * @param orderDTO
+     * @return
+     */
+    RefundResponse refund(OrderDTO orderDTO);
 }

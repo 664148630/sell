@@ -23,7 +23,7 @@ import java.net.URLEncoder;
 
 /**
  * Created by 赖学军
- *使用SDK方式获取 OpenID
+ *使用SDK方式获取 OpenID（微信授权）
  * @Date 2021/4/25 18:01
  * @Version 1.0
  */
@@ -38,7 +38,7 @@ public class WechatController {
     public String authorize(@RequestParam("returnUrl") String returnUrl) throws UnsupportedEncodingException {
         //1.配置（通过配置config配置）
         //2.调用方法
-        String url = "http://laixuejun.nat300.top/sell/wechat/userInfo";// http://sell.natapp4.cc/
+        String url = "http://e8f6795f.natappfree.cc/sell/wechat/userInfo";// http://t33aaa68.natappfree.cc是免费的隧道
         String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAuth2Scope.SNSAPI_USERINFO, URLEncoder.encode(returnUrl,"UTF-8"));
         return "redirect:" + redirectUrl;
     }
@@ -60,7 +60,6 @@ public class WechatController {
             log.error("【微信网页授权】{}",e);
             throw new SellException(ResultEnum.WECHAT_MP_ERROR.getCode(), e.getError().getErrorMsg());
         }
-
 
         try {
             //获得用户信息  ,授权其实用不到的 这儿打出来看看

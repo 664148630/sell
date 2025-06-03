@@ -1,6 +1,6 @@
 <script>
     //如果报路径不对，这个文件还需要在微信公众号-微信支付里面配置好地址
-    //这是手动获取的方式，改成在 pom 引用 spring-boot-starter-freemarker 自动获取的方式
+    //这是手动获取的方式，改成在 pom 引用 spring-boot-starter-freemarker 自动获取的方式（这个文件可以删除了）
     function onBridgeReady() {
         WeixinJSBridge.invoke('getBrandWCPayRequest', {
                 "appId": "wx2421b1c4370ec43b",     //公众号ID，由商户传入
