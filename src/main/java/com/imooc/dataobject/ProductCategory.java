@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 类目
+ * 类目（数据表映射过来的对象）
  *
  */
 @Entity

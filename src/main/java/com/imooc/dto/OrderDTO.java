@@ -1,11 +1,13 @@
 package com.imooc.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.imooc.dataobject.BaseEntity;
 import com.imooc.dataobject.OrderDetail;
 import com.imooc.enums.OrderStatusEnum;
 import com.imooc.enums.PayStatusEnum;
+import com.imooc.utils.EnumUtil;
 import com.imooc.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
@@ -47,8 +49,26 @@ public class OrderDTO {
     private Date createTime;
 
 //    /** 更新时间. */
-//    @JsonSerialize(using = Date2LongSerializer.class)
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;
+
+    /**
+     * 把 数字 转换成 文字 的枚举方法
+     * @return
+     */
+    @JsonIgnore //加上这个注解，以后对象转换成 json 格式会忽略这个方法（写rest接口的时候，把orderDTO当成一个对象返回json数据也会把它们带上，所以加注解）
+    public OrderStatusEnum getOrderStatusEnum() {
+        //一般方式
+//        return OrderStatusEnum.getOrderStatusEnum(orderStatus);
+
+        //更大，更通用方式
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 }

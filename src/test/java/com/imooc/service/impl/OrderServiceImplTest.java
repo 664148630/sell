@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -72,9 +73,10 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void findList() {
-        PageRequest request = PageRequest.of(2, 5);
+    public void findList() throws Exception {
+        PageRequest request = PageRequest.of(0, 2);
         Page<OrderDTO> orderDTOPage = orderService.findList(BUYER_OPENID, request);
+        System.out.println("测试" + orderDTOPage+ "数据");
         Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
     }
 
@@ -98,5 +100,13 @@ public class OrderServiceImplTest {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.paid(orderDTO);
         Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
+    }
+
+    @Test
+    public void list() {
+        PageRequest request = PageRequest.of(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(request);
+//        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
+        Assert.assertTrue("查询所有的订单列表", orderDTOPage.getTotalElements() < 0);
     }
 }

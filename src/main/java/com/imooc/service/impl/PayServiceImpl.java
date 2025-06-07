@@ -96,7 +96,7 @@ public class PayServiceImpl implements PayService {
     }
 
     /**
-     * 退款
+     * 退款（微信退款需要证书）
      * @param orderDTO
      */
     @Override

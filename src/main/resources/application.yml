@@ -4,6 +4,16 @@ spring:
     username: root
     password: root
     url: jdbc:mysql://127.0.0.1:3306/weixin_order_system?characterEncoding=utf-8&useSSL=false
+  freemarker:
+    suffix: .ftl
+    template-loader-path: classpath:/templates/
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    cache: false
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
   jpa:
     show-sql: true
     database: mysql
@@ -16,7 +26,7 @@ server:
     context-path: /sell
 
 
-# 用xml文件代替了，所以就不用这里的配置
+# 用 logback-spring.xml 文件代替了，所以就不用这里的配置
 #logging:
 #  pattern:
 #    console: "%d - %msg%n"
@@ -31,5 +41,5 @@ wechat:
   mpAppSecret: d8503f7837f2e857cd96390507c9da93
   mchId: 1409146202
   mchKey: c976503d34ca432c601361f969fd8d86
-  keyPath: /var/weixin_cert/h5.p12
-  notifyUrl: http://sell.natapp4.cc/sell/pay/notify
+  keyPath: /var/weixin_cert/h5.p12 #路径记得设置可读的权限
+  notifyUrl: http://sell.natapp4.cc/sell/pay/notify #必填，不然不能发起支付

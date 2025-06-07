@@ -19,7 +19,7 @@ import java.util.Date;
 @Entity
 @Data
 //@DynamicUpdate
-public class OrderMaster extends BaseEntity {
+public class OrderMaster {
     /** 订单id. */
     @Id
     private String orderId;
@@ -38,10 +38,10 @@ public class OrderMaster extends BaseEntity {
     /** 支付状态，默认为0未支付. */
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
-    //时间重新拿出来处理了
+    //如果要把时间重新拿出来处理,就继承自己写的类 extends BaseEntity
     /** 创建时间. */
-//    private Date createTime;
+    private Date createTime;
 ////    /** 更新时间. */
-//    private Date updateTime;
+    private Date updateTime;
 
 }

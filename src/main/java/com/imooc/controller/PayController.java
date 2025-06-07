@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * Created by 赖学军
- * 支付
+ *  微信支付
  * @Date 2021/4/30 17:11
  * @Version 1.0
  */

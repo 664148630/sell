@@ -69,4 +69,18 @@ public class ProductServiceImplTest {
         ProductInfo result = productService.save(productInfo);
         Assert.assertNotNull(result);
     }
+
+    @Test
+    public void onSale() {
+        ProductInfo productInfo = productService.onSale("123456");
+        //第一个参数是 期待的值，第二个参数是 实际的值
+        Assert.assertEquals(ProductStatusEnum.UP, productInfo.getProductStatusEnum());
+    }
+
+    @Test
+    public void OffSale() {
+        ProductInfo productInfo = productService.offSale("123456");
+        //第一个参数是 期待的值，第二个参数是 实际的值
+        Assert.assertEquals(ProductStatusEnum.DOWN, productInfo.getProductStatusEnum());
+    }
 }

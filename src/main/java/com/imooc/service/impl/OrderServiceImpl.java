@@ -99,7 +99,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO findOne(String orderId) {
-        OrderMaster orderMaster = orderMasterRepository.findById(orderId).get();
+//        OrderMaster orderMaster = orderMasterRepository.findOne(orderId); //在 Spring Data JPA 2.0 之后，JpaRepository 接口不再包含 findOne 方法。
+//        OrderMaster orderMaster = orderMasterRepository.findById(orderId).get();//将findOne(id)改为findById(id).get()，但是这种方法如果没查到的话，会报错，举例如下：java.util.NoSuchElementException: No value present
+        OrderMaster orderMaster = orderMasterRepository.findById(orderId).orElse(null);//将findOne(id)改为findById(orderId).orElse(null)，这种方法就算是没查到，也不会报错，而是查到null返回null，查不到，才会报错。
         if (orderMaster == null) {
             throw new SellException(ResultEnum.ORDER_NOT_EXIST);
         }
@@ -202,5 +204,14 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
         return orderDTO;
+    }
+
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+        return new PageImpl<OrderDTO>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+
     }
 }
