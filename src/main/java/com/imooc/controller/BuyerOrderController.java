@@ -59,6 +59,7 @@ public class BuyerOrderController {
         map.put("orderId", createResult.getOrderId());
         return ResultVOUtil.success(map);
     }
+
     //订单列表
     @GetMapping("/list")
     public ResultVO<List<OrderDTO>> list(@RequestParam("openid") String openid,

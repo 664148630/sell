@@ -43,3 +43,5 @@ wechat:
   mchKey: c976503d34ca432c601361f969fd8d86
   keyPath: /var/weixin_cert/h5.p12 #路径记得设置可读的权限
   notifyUrl: http://sell.natapp4.cc/sell/pay/notify #必填，不然不能发起支付
+  templateId:
+    orderStatus: gbd-dBoJs7Oycq4GqgAe-p-QJLwmDk4_ad7eqyWG_C4 #可以设置多个；比如：orderStatus1，...
