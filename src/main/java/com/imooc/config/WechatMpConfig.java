@@ -31,6 +31,8 @@ public class WechatMpConfig {
     @Bean
     public WxMpConfigStorage wxMpConfigStorage() {
         WxMpDefaultConfigImpl wxMpDefaultConfig = new WxMpDefaultConfigImpl();
+        //开源项目地址：https://github.com/binarywang/WxJava/wiki
+//        WxMpInMemoryConfigStorage wxMpInMemoryConfigStorage = new WxMpInMemoryConfigStorage();//之前使用老版本，升级新版本的同学请注意，为规范代码， 部分代码做了重构，命名发生变化，
         //从配置文件里面读（在配置文件里写好，通过配置类映射过来）
         wxMpDefaultConfig.setAppId(accountConfig.getMpAppId());
         wxMpDefaultConfig.setSecret(accountConfig.getMpAppSecret());

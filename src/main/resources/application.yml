@@ -21,6 +21,9 @@ spring:
       ddl-auto: update
   jackson:
     default-property-inclusion: non_null
+  redis: #引入redis依赖记得来这里配置redis
+    host: 192.168.42.105
+    port: 6379
 server:
   servlet:
     context-path: /sell
@@ -39,9 +42,17 @@ server:
 wechat:
   mpAppId: wx944bee3c0903b94f
   mpAppSecret: d8503f7837f2e857cd96390507c9da93
+  openAppId: wx6ad144e54af67d87 #扫码登录需要的（接口权限需要公司资质注册的账号才可以）
+  openAppSecret: #扫码登录需要的
   mchId: 1409146202
   mchKey: c976503d34ca432c601361f969fd8d86
   keyPath: /var/weixin_cert/h5.p12 #路径记得设置可读的权限
   notifyUrl: http://sell.natapp4.cc/sell/pay/notify #必填，不然不能发起支付
   templateId:
     orderStatus: gbd-dBoJs7Oycq4GqgAe-p-QJLwmDk4_ad7eqyWG_C4 #可以设置多个；比如：orderStatus1，...
+
+project:
+  url:
+    wechatMpAuthorize: http://e8f6795f.natappfree.cc
+    wechatOpenAuthorize: 127.0.0.1
+    sell: http://127.0.0.1:8080
