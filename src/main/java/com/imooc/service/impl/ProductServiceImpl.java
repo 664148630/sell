@@ -8,10 +8,13 @@ import com.imooc.exception.SellException;
 import com.imooc.repository.ProductInfoRepository;
 import com.imooc.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -28,8 +31,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository repository;
+
+//    @Cacheable(cacheNames = "product", key = "123")//测试用的
     @Override
     public ProductInfo findOne(String productId) {
+//        ProductInfo productInfo1 = repository.findById(productId).get();
         ProductInfo productInfo = new ProductInfo();
         productInfo.setProductId(productId);
         //将匹配对象封装成Example对象
@@ -48,6 +54,7 @@ public class ProductServiceImpl implements ProductService {
         return repository.findAll(pageable);
     }
 
+//    @CachePut(cacheNames = "product", key = "123")//如果要用@CachePut，返回的对象格式要一致（findOne()跟save()方法返回的对象都是ProductInfo），将ProductInfo对象进行序列化
     @Override
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo);

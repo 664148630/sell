@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.imooc.dataobject.ProductInfo;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,7 +15,10 @@ import java.util.List;
  * @Version 1.0
  */
 @Data
-public class ProductVO {
+public class ProductVO implements Serializable {
+
+    private static final long serialVersionUID = -3555231358992190972L;
+
     @JsonProperty("name")
     private String categoryName;
     @JsonProperty("type")

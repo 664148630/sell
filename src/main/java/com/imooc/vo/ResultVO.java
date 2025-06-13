@@ -3,6 +3,8 @@ package com.imooc.vo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * Created by 赖学军
  *
@@ -11,7 +13,8 @@ import lombok.Data;
  */
 @Data
 //@JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResultVO<T> {
+public class ResultVO<T> implements Serializable {
+    private static final long serialVersionUID = -8349181922768084604L;
     /** 错误码. */
     private Integer code;
     /** 提示信息. */

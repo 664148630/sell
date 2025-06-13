@@ -10,6 +10,7 @@ import com.imooc.vo.ProductVO;
 import com.imooc.vo.ResultVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,9 @@ public class BuyerProductController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+
+//    @Cacheable(cacheNames = "product", key = "123")//测试用的
+//    @Cacheable(cacheNames = "product", key = "#sellerId", condition = "#sellerId.length() > 3", unless = "#result.getCode() != 0")//动态来写key（#sellerId是参数），这种称为spEL表达式
     @GetMapping("/list")
     public ResultVO list(){
         //1、查询所有的上架商品

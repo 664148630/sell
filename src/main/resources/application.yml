@@ -22,7 +22,7 @@ spring:
   jackson:
     default-property-inclusion: non_null
   redis: #引入redis依赖记得来这里配置redis
-    host: 192.168.42.105
+    host: 192.168.75.105
     port: 6379
 server:
   servlet:

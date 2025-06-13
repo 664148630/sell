@@ -10,6 +10,8 @@ import com.imooc.utils.KeyUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -125,6 +127,8 @@ public class SellerProductController {
      * @return
      */
     @PostMapping("/save")
+//    @CachePut(cacheNames = "product", key = "123")//测试用的，这个返回值ModelAndView对象不能序列化，可换成CacheEvict来删除redis的缓存
+//    @CacheEvict(cacheNames = "product", key = "123")//如果执意用CachePut，可参考ProductServiceImpl里面的测试
     public ModelAndView save(@Valid ProductForm form,
                              BindingResult bindingResult,
                              Map<String, Object> map) {
